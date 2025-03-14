@@ -1,5 +1,5 @@
 {
-	"name": "reshub",
+	"name": "dishcover",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
@@ -57,6 +57,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.0.6",
+		"appwrite": "^17.0.0",
 		"flowbite": "^3.1.2",
 		"flowbite-svelte": "^0.47.4"
 	}
