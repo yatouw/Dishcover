@@ -1,28 +1,20 @@
-<script>
-// @ts-nocheck
-
-  import AuthLayout from './auth/+layout.svelte';
-  import Login from './auth/login/+page.svelte';
-  import Register from './auth/register/+page.svelte';
-import Landing from '../App.svelte';
-
-$: isLoggedIn = false;
-  let currentPage = '';
+<script lang="ts">
+    import type { PageData } from './$types.js';
 </script>
 
-{#if isLoggedIn}
-<h1>Page</h1>
-<p>This is a protected page</p>
-{:else}
-{#if currentPage === 'login' || currentPage === 'register'}
-  <AuthLayout data={{}} >
-    {#if currentPage === 'login'}
-      <Login data={{}} />
-    {:else if currentPage === 'register'}
-      <Register data={{}} />
-    {/if}
-  </AuthLayout>
-{:else}
-  <Landing />
-{/if}
-{/if}
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Welcome to Dishcover Home</h1>
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <p class="text-lg">Discover delicious recipes and culinary experiences!</p>
+        <div class="mt-4 grid grid-cols-2 gap-4">
+            <div class="bg-orange-100 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold">Featured Recipe</h2>
+                <p>Spicy Chicken Tacos</p>
+            </div>
+            <div class="bg-orange-100 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold">Trending</h2>
+                <p>Mediterranean Salad</p>
+            </div>
+        </div>
+    </div>
+</div>
