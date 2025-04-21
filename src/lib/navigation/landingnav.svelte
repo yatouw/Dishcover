@@ -60,16 +60,16 @@
          <p class="text-sm text-gray-600">Subscribe Now to get the premium access!</p>
          <button class="w-full mt-2 bg-orange-600 text-white py-2 rounded-lg text-md hover:bg-orange-700 transition-colors">SUBSCRIBE NOW</button>
          
-         <div class="mt-4 space-y-2">
-            <!-- svelte-ignore event_directive_deprecated -->
+         <!-- <div class="mt-4 space-y-2">
+
             <a href="/auth/login" on:click|preventDefault={() => navigateTo('auth/login')} class="w-full inline-block bg-white border-2 border-orange-600 text-orange-600 py-2 rounded-lg text-md hover:bg-orange-50 transition-colors">
                Login
             </a>
-            <!-- svelte-ignore event_directive_deprecated -->
+   
             <a href="/auth/register" on:click|preventDefault={() => navigateTo('auth/register')} class="w-full inline-block bg-orange-600 text-white py-2 rounded-lg text-md hover:bg-orange-700 transition-colors">
                Sign Up
             </a>
-         </div>
+         </div>  -->
       </div>
       <hr class="border-gray-300 my-3 mx-3 w-58" />
       <!-- svelte-ignore a11y_invalid_attribute -->
