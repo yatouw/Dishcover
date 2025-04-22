@@ -14,7 +14,7 @@
    <img src="https://via.placeholder.com/24" alt="Menu Icon" class="w-8 h-8" />
 </button>
 
-<aside id="logo-sidebar" class="fixed top-6 left-0 z-40 w-70 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow-lg" aria-label="Sidebar">
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-70 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow-lg" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto">
       <div class="flex items-center justify-center mb-5">
          <img src="/assets/dishcover_logo.png" class="h-18 me-3 sm:h-22" alt="Dishcover Logo" />

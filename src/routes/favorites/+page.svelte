@@ -1,23 +1,81 @@
 <script lang="ts">
     import type { PageData } from './$types.js';
+    import Navbar from '../../components/Navbar.svelte';
+
+    const favoriteRecipes = [
+        { name: 'Creamy Carbonara', image: '/assets/pasta.jpg', time: '25mins', rating: '4.8' },
+        { name: 'Salmon Nigiri', image: '/assets/sushi.jpg', time: '40mins', rating: '4.6' },
+        { name: 'Thai Green Curry', image: '/assets/thai-curry.jpg', time: '35mins', rating: '4.7' },
+        { name: 'Beef Tacos', image: '/assets/tacos.jpg', time: '30mins', rating: '4.5' },
+        { name: 'Margherita Pizza', image: '/assets/pizza.jpg', time: '45mins', rating: '4.9' },
+        { name: 'Chicken Biryani', image: '/assets/biryani.jpg', time: '50mins', rating: '4.7' },
+        { name: 'French Onion Soup', image: '/assets/soup.jpg', time: '40mins', rating: '4.4' },
+        { name: 'Beef Bulgogi', image: '/assets/bulgogi.jpg', time: '35mins', rating: '4.6' },
+        { name: 'Shrimp Pad Thai', image: '/assets/padthai.jpg', time: '30mins', rating: '4.5' }
+    ];
 </script>
 
-<div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-4">Your Favorite Recipes</h1>
-    <div class="space-y-4">
-        <div class="bg-white shadow-md rounded-lg p-6 flex items-center">
-            <img src="/assets/pasta.jpg" alt="Pasta" class="w-24 h-24 object-cover rounded-lg mr-4">
-            <div>
-                <h2 class="text-xl font-semibold">Creamy Carbonara</h2>
-                <p class="text-gray-600">Added on: June 15, 2023</p>
+<div class="min-h-screen bg-white">
+    <Navbar />
+    
+    <main class="container mx-auto px-6 pt-6">
+        <div class="flex justify-center">
+            <div class="w-[147vh]">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h2 class="text-2xl font-semibold">Your Favorite Recipes</h2>
+                        <p class="text-gray-500 text-sm mt-1">Recipes you've saved for later</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="p-2 rounded-full bg-white shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="p-2 rounded-full bg-white shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-6">
+                    {#each favoriteRecipes as recipe}
+                    <div class="relative bg-white p-4 rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow duration-300">
+                        <div class="relative bg-gray-200 h-48 rounded-[15px] mb-4">
+                            <img 
+                                src={recipe.image} 
+                                alt={recipe.name} 
+                                class="w-full h-full object-cover rounded-[15px]"
+                            />
+                            <div class="absolute right-3 top-3">
+                                <button class="p-2 rounded-full bg-white/80 hover:bg-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="absolute left-3 bottom-3 bg-white rounded-full px-3 py-1 flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-sm">{recipe.time}</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-medium">{recipe.name}</h3>
+                            <div class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                <span class="font-medium">{recipe.rating}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {/each}
+                </div>
             </div>
         </div>
-        <div class="bg-white shadow-md rounded-lg p-6 flex items-center">
-            <img src="/assets/sushi.jpg" alt="Sushi" class="w-24 h-24 object-cover rounded-lg mr-4">
-            <div>
-                <h2 class="text-xl font-semibold">Salmon Nigiri</h2>
-                <p class="text-gray-600">Added on: May 22, 2023</p>
-            </div>
-        </div>
-    </div>
+    </main>
 </div>
