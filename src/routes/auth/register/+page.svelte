@@ -1,27 +1,32 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { Button, Input, Label } from 'flowbite-svelte';
-  import { createAccount } from '$lib/appwrite';     
+  import { user } from '$lib/user';
 
+  let name = '';
   let email = '';
   let password = '';
   let confirmPassword = '';
   let errorMessage = '';
 
   async function handleRegister() {
+    console.log('Registration attempt with:', { name, email, password });
     try {
-      if (!email || !password || !confirmPassword) {
+      if (!name || !email || !password || !confirmPassword) {
         errorMessage = 'Please fill in all fields';
+        console.log('Validation failed: Missing fields');
         return;
       }
 
       if (password !== confirmPassword) {
         errorMessage = 'Passwords do not match';
+        console.log('Validation failed: Passwords do not match');
         return;
       }
 
-      await createAccount(email, password);
-      goto('/user');
+      console.log('Attempting to register user...');
+      await user.register(email, password, name);
+      console.log('Registration successful');
     } catch (error) {
       console.error('Registration error:', error);
       errorMessage = error instanceof Error ? error.message : 'Registration failed. Please try again.';
@@ -58,6 +63,18 @@
 
     <form class="mt-8 space-y-6" on:submit|preventDefault={handleRegister}>
       <div class="rounded-md space-y-4">
+        <div>
+          <Label for="name" class="block text-sm font-medium text-gray-700">Full Name</Label>
+          <Input
+            id="name"
+            type="text"
+            bind:value={name}
+            required
+            class="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm"
+            placeholder="Enter your full name"
+          />
+        </div>
+
         <div>
           <Label for="email" class="block text-sm font-medium text-gray-700">Email address</Label>
           <Input

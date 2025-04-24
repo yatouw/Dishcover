@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { Button, Input, Label } from 'flowbite-svelte';
-  import { login } from '$lib/appwrite';
+  import { user } from '$lib/user';
 
   let email = '';
   let password = '';
@@ -14,8 +14,7 @@
         return;
       }
 
-      await login(email, password);
-      goto('/user');
+      await user.login(email, password);
     } catch (error) {
       console.error('Login error:', error);
       errorMessage = error instanceof Error ? error.message : 'Login failed. Please try again.';

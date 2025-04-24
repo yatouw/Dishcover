@@ -2,9 +2,7 @@
     import type { PageData } from './$types.js';
     import { goto } from '$app/navigation';
 
-    function handlePlanSelection() {
-        goto('/auth/login');
-    }
+
 </script>
 
 <div class="min-h-screen bg-white">
@@ -19,7 +17,7 @@
                     <li>Access to 100+ Recipes</li>
                     <li>Basic AR Features</li>
                 </ul>
-                <button on:click={handlePlanSelection} class="mt-4 bg-orange-600 text-white px-4 py-2 rounded-lg w-full">
+                <button  class="mt-4 bg-orange-600 text-white px-4 py-2 rounded-lg w-full">
                     Choose Basic
                 </button>
             </div>
@@ -31,7 +29,7 @@
                     <li>Full AR Experience</li>
                     <li>Personalized Recommendations</li>
                 </ul>
-                <button on:click={handlePlanSelection} class="mt-4 bg-orange-600 text-white px-4 py-2 rounded-lg w-full">
+                <button class="mt-4 bg-orange-600 text-white px-4 py-2 rounded-lg w-full">
                     Choose Pro
                 </button>
             </div>
@@ -43,7 +41,7 @@
                     <li>All Pro Features</li>
                     <li>Family Meal Planning</li>
                 </ul>
-                <button on:click={handlePlanSelection} class="mt-4 bg-orange-600 text-white px-4 py-2 rounded-lg w-full">
+                <button  class="mt-4 bg-orange-600 text-white px-4 py-2 rounded-lg w-full">
                     Choose Family
                 </button>
             </div>

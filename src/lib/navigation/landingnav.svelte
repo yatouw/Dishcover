@@ -7,6 +7,10 @@
         const route = page.toLowerCase().replace(/\s+/g, '-');
         goto(`/${route}`);
     }
+
+    function handleSubscribe() {
+        goto('/auth/login');
+    }
 </script>
 
 <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-lg text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -58,7 +62,7 @@
       </ul>
       <div class="mt-45 p-4 text-center">
          <p class="text-sm text-gray-600">Subscribe Now to get the premium access!</p>
-         <button class="w-full mt-2 bg-orange-600 text-white py-2 rounded-lg text-md hover:bg-orange-700 transition-colors">SUBSCRIBE NOW</button>
+         <button on:click={handleSubscribe} class="w-full mt-2 bg-orange-600 text-white py-2 rounded-lg text-md hover:bg-orange-700 transition-colors">SUBSCRIBE NOW</button>
          
          <!-- <div class="mt-4 space-y-2">
 
@@ -73,10 +77,10 @@
       </div>
       <hr class="border-gray-300 my-3 mx-3 w-58" />
       <!-- svelte-ignore a11y_invalid_attribute -->
-      <a href="#" class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
+      <!-- <a href="#" class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
           <img src="https://via.placeholder.com/24" alt="Profile Icon" class="w-6 h-6" />
           <span class="ms-3">Guess</span>
-      </a>
+      </a> -->
    </div>
 </aside>
 

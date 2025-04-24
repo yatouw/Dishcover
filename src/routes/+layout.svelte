@@ -21,7 +21,7 @@
 {#if currentPath.startsWith('/auth/login') || currentPath.startsWith('/auth/register')}
     <!-- Render auth pages without navigation -->
     {@render children()}
-{:else if currentPath.startsWith('/auth/user')}
+{:else if currentPath.startsWith('/auth/user/home')}
     <!-- Render user pages with user navigation -->
     <UserNav>
         {@render children()}

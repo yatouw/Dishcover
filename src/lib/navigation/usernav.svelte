@@ -1,11 +1,23 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
+   import { goto } from '$app/navigation';
+	import { user } from '$lib/user';
+	import { Button } from 'flowbite-svelte';
 
     // Function to navigate to different pages
     function navigateTo(page: string) {
         // Convert page name to lowercase and replace spaces with hyphens for route matching
         const route = page.toLowerCase().replace(/\s+/g, '-');
-        goto(`/${route}`);
+        goto(`/auth/user/${route}`);
+    }
+
+    async function handleLogout() {
+        try {
+            await user.logout();
+            // Redirect to login page after successful logout
+            goto('/');
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
     }
 </script>
 
@@ -21,52 +33,62 @@
       </div>
       <ul class="space-y-7 mt-20 px-5 font-medium">
          <li>
-            <!-- svelte-ignore event_directive_deprecated -->
-            <a href="/" on:click|preventDefault={() => navigateTo('Home')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
+            <a href="/auth/user/home" on:click|preventDefault={() => navigateTo('home')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
                <img src="/assets/home.png" alt="Home Icon" class="w-6 h-6" />
                <span class="ms-3">Home</span>
             </a>
          </li>
          <li>
-            <!-- svelte-ignore event_directive_deprecated -->
-            <a href="/explore" on:click|preventDefault={() => navigateTo('Explore')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
+            <a href="/auth/user/explore" on:click|preventDefault={() => navigateTo('explore')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
                <img src="/assets/direction.png" alt="Explore Icon" class="w-6 h-6" />
                <span class="ms-3">Explore</span>
             </a>
          </li>
          <li>
-            <!-- svelte-ignore event_directive_deprecated -->
-            <a href="/favorites" on:click|preventDefault={() => navigateTo('Favorites')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
+            <a href="/auth/user/favorites" on:click|preventDefault={() => navigateTo('favorites')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
                <img src="/assets/heart.png" alt="Favorites Icon" class="w-6 h-6" />
                <span class="ms-3">Favorites</span>
             </a>
          </li>
          <li>
-            <!-- svelte-ignore event_directive_deprecated -->
-            <a href="/ar" on:click|preventDefault={() => navigateTo('Ar')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
+            <a href="/auth/user/ar" on:click|preventDefault={() => navigateTo('ar')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
                <img src="/assets/augmented-reality.png" alt="Community Icon" class="w-6 h-6" />
                <span class="ms-3">AR Experience</span>
             </a>
          </li>
          <li>
-            <!-- svelte-ignore event_directive_deprecated -->
-            <a href="/subscription" on:click|preventDefault={() => navigateTo('Subscription')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
+            <a href="/auth/user/subscription" on:click|preventDefault={() => navigateTo('subscription')} class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
                <img src="/assets/subscribe.png" alt="Subscription Icon" class="w-6 h-6" />
                <span class="ms-3">Subscription</span>
             </a>
          </li>
       </ul>
-    
+      <div class="mt-45 p-4 text-center">
+         <p class="text-sm text-gray-600">Subscribe Now to get the premium access!</p>
+         <button  class="w-full mt-2 bg-orange-600 text-white py-2 rounded-lg text-md hover:bg-orange-700 transition-colors">SUBSCRIBE NOW</button>
+         
+         <!-- <div class="mt-4 space-y-2">
+
+            <a href="/auth/login" on:click|preventDefault={() => navigateTo('auth/login')} class="w-full inline-block bg-white border-2 border-orange-600 text-orange-600 py-2 rounded-lg text-md hover:bg-orange-50 transition-colors">
+               Login
+            </a>
+   
+            <a href="/auth/register" on:click|preventDefault={() => navigateTo('auth/register')} class="w-full inline-block bg-orange-600 text-white py-2 rounded-lg text-md hover:bg-orange-700 transition-colors">
+               Sign Up
+            </a>
+         </div>  -->
+      </div>
       <hr class="border-gray-300 my-3 mx-3 w-58" />
-      <!-- svelte-ignore a11y_invalid_attribute -->
-      <a href="#" class="flex items-center p-2 text-lg text-gray-900 rounded-lg hover:bg-gray-100 group">
-          <img src="https://via.placeholder.com/24" alt="Profile Icon" class="w-6 h-6" />
-          <span class="ms-3">Guess</span>
-      </a>
-   </div>
+      <div class="px-2">
+         <Button 
+            color="red" 
+            on:click={handleLogout}
+            class="w-full"
+         >
+            Logout
+         </Button>
 </aside>
 
-<!-- svelte-ignore slot_element_deprecated -->
 <div class="p-4 sm:ml-64">
    <slot />
 </div>
